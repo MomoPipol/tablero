@@ -288,6 +288,31 @@
             overflow: hidden;
         }
         
+        .looker-embed {
+            margin: 15px 0;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .looker-container {
+            position: relative;
+            padding-bottom: 10px;
+            height: 650px;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .looker-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
         .data-header {
             display: flex;
             justify-content: space-between;
@@ -526,18 +551,18 @@
                 </div>
             </div>
             
-            <div class="data-visualization">
+            <div class="data-visualization looker-embed">
                 <div class="data-header">
                     <div class="data-title">
                         <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/looker.svg" alt="Looker">
-                        <span>Tendencia de Interacciones</span>
+                        <span>Dashboard Completo - Tendencia de Interacciones</span>
                     </div>
                 </div>
-                <div class="data-content">
-                    <img src="/api/placeholder/600/200" alt="Gráfico de tendencia de interacciones">
+                <div class="looker-container">
+                    <iframe width="100%" height="450" src="https://lookerstudio.google.com/embed/reporting/8e9cd352-56e0-4267-8efd-a4aceb386a1f/page/p_xr441gpeqd" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
                 </div>
                 <div class="data-footer">
-                    Actualizado: 22 mar 2025
+                    Dashboard en tiempo real - Actualizado automáticamente
                 </div>
             </div>
         </div>
