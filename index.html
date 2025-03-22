@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Análisis Redes Sociales - Rolo Figueroa</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <style>
         :root {
             --primary-color: #4a90e2;
@@ -454,6 +455,92 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         
+        .chart-container-wrapper {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        /* Table Styles */
+        .data-table-container {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .data-table-container h3 {
+            font-size: 15px;
+            color: #333;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+        
+        .table-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .governors-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        
+        .governors-table th {
+            background-color: #f5f5f5;
+            padding: 8px 6px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+            white-space: nowrap;
+        }
+        
+        .governors-table td {
+            padding: 8px 6px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .governors-table .highlight {
+            font-weight: bold;
+            color: #2e8b57;
+        }
+        
+        .governors-table .current-governor {
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+        
+        .governors-table .up {
+            color: #4caf50;
+        }
+        
+        .governors-table .down {
+            color: #e05d44;
+        }
+        
+        .governors-table .highlight-growth {
+            font-weight: bold;
+            color: #4caf50;
+            position: relative;
+        }
+        
+        .governors-table .highlight-growth:after {
+            content: '★';
+            position: absolute;
+            margin-left: 3px;
+            font-size: 10px;
+        }
+        
+        .table-caption {
+            font-size: 11px;
+            color: #777;
+            text-align: right;
+            margin: 5px 0 0 0;
+        }
+        
         /* Helper Classes */
         .text-right {
             text-align: right;
@@ -574,6 +661,121 @@
         </div>
         <div class="section-content">
             <p>Entre diciembre de 2024 y febrero de 2025, el perfil aumentó de 31.266 seguidores a 38.520, lo que representa aproximadamente un 1% de incremento en relación a la población de la Provincia de Neuquén. Este crecimiento supera el rendimiento de los tres gobernadores con mayor popularidad en redes.</p>
+            
+            <div class="chart-container-wrapper">
+                <canvas id="governorsChart" width="100%" height="300"></canvas>
+            </div>
+            
+            <div class="data-table-container">
+                <h3>Evolución de seguidores en Instagram (Dic 2024 - Feb 2025)</h3>
+                <div class="table-scroll">
+                    <table class="governors-table">
+                        <thead>
+                            <tr>
+                                <th>Gobernador</th>
+                                <th>Dic 2024</th>
+                                <th>Feb 2025</th>
+                                <th>Variación</th>
+                                <th>% IG</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ricardo Quintela (LRI)</td>
+                                <td>46.952</td>
+                                <td>47.500</td>
+                                <td class="up">+548</td>
+                                <td class="highlight">12,4%</td>
+                            </tr>
+                            <tr>
+                                <td>Gustavo Valdés (CORR)</td>
+                                <td>140.000</td>
+                                <td>143.000</td>
+                                <td class="up">+3.000</td>
+                                <td class="highlight">11,8%</td>
+                            </tr>
+                            <tr>
+                                <td>Rogelio Frigerio (ERI)</td>
+                                <td>134.982</td>
+                                <td>136.000</td>
+                                <td class="up">+1.018</td>
+                                <td class="highlight">9,5%</td>
+                            </tr>
+                            <tr class="current-governor">
+                                <td>Rolando Figueroa (NQN)</td>
+                                <td>31.266</td>
+                                <td>38.520</td>
+                                <td class="up highlight-growth">+7.254</td>
+                                <td class="highlight">5,3%</td>
+                            </tr>
+                            <tr>
+                                <td>Alberto Weretilneck (RNE)</td>
+                                <td>30.000</td>
+                                <td>33.400</td>
+                                <td class="up">+3.400</td>
+                                <td class="highlight">4,4%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption">Fuente: Datos recopilados de cuentas oficiales - Dic 2024 a Feb 2025</p>
+            </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const ctx = document.getElementById('governorsChart').getContext('2d');
+                    
+                    const chart = new Chart(ctx, {
+                        type: 'horizontalBar',
+                        data: {
+                            labels: ['Ricardo Quintela (LRI)', 'Gustavo Valdés (CORR)', 'Rogelio Frigerio (ERI)', 'Rolando Figueroa (NQN)', 'Alberto Weretilneck (RNE)'],
+                            datasets: [{
+                                label: 'Diciembre 2024',
+                                data: [46952, 140000, 134982, 31266, 30000],
+                                backgroundColor: 'rgba(108, 117, 125, 0.7)',
+                                borderColor: 'rgba(108, 117, 125, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Febrero 2025',
+                                data: [47500, 143000, 136000, 38520, 33400],
+                                backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                                borderColor: 'rgba(46, 204, 113, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            title: {
+                                display: true,
+                                text: 'Seguidores en Instagram (Dic 2024 - Feb 2025)',
+                                fontSize: 14,
+                                fontColor: '#333'
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom'
+                            },
+                            scales: {
+                                xAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    },
+                                    gridLines: {
+                                        display: true,
+                                        color: "rgba(0, 0, 0, 0.05)"
+                                    }
+                                }],
+                                yAxes: [{
+                                    gridLines: {
+                                        display: false
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                });
+            </script>
             
             <div class="data-content">
                 <img src="/api/placeholder/600/300" alt="Gráfico comparativo de gobernadores" class="comparison-chart">
