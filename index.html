@@ -257,6 +257,7 @@
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            height: 250px;
         }
         
         .data-table-container {
@@ -766,7 +767,7 @@
             <p>Entre diciembre de 2024 y febrero de 2025, el perfil aumentó de 31.266 seguidores a 38.520, lo que representa aproximadamente un 1% de incremento en relación a la población de Neuquén. Este crecimiento supera el rendimiento de los tres gobernadores con mayor popularidad en redes.</p>
             
             <div class="chart-container-wrapper">
-                <canvas id="governorsChart" width="100%" height="300"></canvas>
+                <canvas id="governorsChart" width="100%" height="200"></canvas>
             </div>
             
             <script>
@@ -774,18 +775,18 @@
                     const ctx = document.getElementById('governorsChart').getContext('2d');
                     
                     const chart = new Chart(ctx, {
-                        type: 'horizontalBar',
+                        type: 'bar',
                         data: {
-                            labels: ['Ricardo Quintela (LRI)', 'Gustavo Valdés (CORR)', 'Rogelio Frigerio (ERI)', 'Rolando Figueroa (NQN)', 'Alberto Weretilneck (RNE)'],
+                            labels: ['R. Quintela', 'G. Valdés', 'R. Frigerio', 'R. Figueroa', 'A. Weretilneck'],
                             datasets: [{
-                                label: 'Diciembre 2024',
+                                label: 'Dic 2024',
                                 data: [46952, 140000, 134982, 31266, 30000],
                                 backgroundColor: 'rgba(108, 117, 125, 0.7)',
                                 borderColor: 'rgba(108, 117, 125, 1)',
                                 borderWidth: 1
                             },
                             {
-                                label: 'Febrero 2025',
+                                label: 'Feb 2025',
                                 data: [47500, 143000, 136000, 38520, 33400],
                                 backgroundColor: 'rgba(46, 204, 113, 0.7)',
                                 borderColor: 'rgba(46, 204, 113, 1)',
@@ -794,31 +795,52 @@
                         },
                         options: {
                             responsive: true,
+                            maintainAspectRatio: false,
                             title: {
                                 display: true,
-                                text: 'Seguidores en Instagram (Dic 2024 - Feb 2025)',
+                                text: 'Seguidores en Instagram',
                                 fontSize: 14,
                                 fontColor: '#333'
                             },
                             legend: {
                                 display: true,
-                                position: 'bottom'
+                                position: 'top',
+                                labels: {
+                                    boxWidth: 12,
+                                    padding: 10
+                                }
                             },
                             scales: {
-                                xAxes: [{
+                                yAxes: [{
                                     ticks: {
-                                        beginAtZero: true
+                                        beginAtZero: true,
+                                        callback: function(value) {
+                                            if (value >= 1000) {
+                                                return value / 1000 + 'k';
+                                            }
+                                            return value;
+                                        }
                                     },
                                     gridLines: {
                                         display: true,
                                         color: "rgba(0, 0, 0, 0.05)"
                                     }
                                 }],
-                                yAxes: [{
+                                xAxes: [{
                                     gridLines: {
                                         display: false
+                                    },
+                                    ticks: {
+                                        fontSize: 10
                                     }
                                 }]
+                            },
+                            tooltips: {
+                                callbacks: {
+                                    label: function(tooltipItem, data) {
+                                        return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel.toLocaleString();
+                                    }
+                                }
                             }
                         }
                     });
@@ -858,4 +880,339 @@
                                 <td>134.982</td>
                                 <td>136.000</td>
                                 <td class="up">+1.018</td>
-                                <td class="highlight
+                                <td class="highlight">9,5%</td>
+                            </tr>
+                            <tr class="current-governor">
+                                <td>Rolando Figueroa (NQN)</td>
+                                <td>31.266</td>
+                                <td>38.520</td>
+                                <td class="up highlight-growth">+7.254</td>
+                                <td class="highlight">5,3%</td>
+                            </tr>
+                            <tr>
+                                <td>Alberto Weretilneck (RNE)</td>
+                                <td>30.000</td>
+                                <td>33.400</td>
+                                <td class="up">+3.400</td>
+                                <td class="highlight">4,4%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption">Fuente: Datos recopilados de cuentas oficiales - Dic 2024 a Feb 2025</p>
+            </div>
+            
+            <div class="conclusions-box">
+                <p><strong>Conclusión:</strong> El perfil de Rolo Figueroa es el que mayor crecimiento tuvo, manteniendo una tendencia positiva durante marzo (dato actualizado: <span class="highlight">40.700 seguidores</span>).</p>
+                <p class="warning">Sin embargo, en los últimos 30 días, <strong>800 perfiles dejaron de seguir la cuenta</strong>, lo que refuerza la necesidad de optimizar el contenido para fidelizar seguidores.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Contenido más Exitoso en Meta</h2>
+        </div>
+        <div class="section-content">
+            <div class="video-carousel-section">
+                <div class="video-carousel-header">
+                    <h3 class="video-carousel-title">Videos con mayor engagement en Facebook</h3>
+                </div>
+                <div class="video-carousel-wrapper">
+                    <div class="video-carousel">
+                        <div class="video-card">
+                            <div class="video-thumbnail" style="background-image: url('https://i.ibb.co/6mSfD8D/rio.jpg')">
+                                <div class="play-icon"></div>
+                            </div>
+                            <div class="video-metrics">
+                                <div class="video-reaction">177 reacciones</div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">Impresiones:</span>
+                                    <span class="video-metric-value">31,3 mil</span>
+                                </div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">Interacciones:</span>
+                                    <span class="video-metric-value">9.444</span>
+                                </div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">CTR:</span>
+                                    <span class="video-metric-value">0,14%</span>
+                                </div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">Inversión:</span>
+                                    <span class="video-metric-value">$29.031,39</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card">
+                            <div class="video-thumbnail" style="background-image: url('https://i.ibb.co/kQH5Zwv/edificio.jpg')">
+                                <div class="play-icon"></div>
+                            </div>
+                            <div class="video-metrics">
+                                <div class="video-reaction">34 reacciones</div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">Impresiones:</span>
+                                    <span class="video-metric-value">20,9 mil</span>
+                                </div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">Interacciones:</span>
+                                    <span class="video-metric-value">6.947</span>
+                                </div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">CTR:</span>
+                                    <span class="video-metric-value">0,15%</span>
+                                </div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">Inversión:</span>
+                                    <span class="video-metric-value">$28.499,85</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card">
+                            <div class="video-thumbnail" style="background-image: url('https://i.ibb.co/jVgcmjx/colectivos.jpg')">
+                                <div class="play-icon"></div>
+                            </div>
+                            <div class="video-metrics">
+                                <div class="video-reaction">12 reacciones</div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">Impresiones:</span>
+                                    <span class="video-metric-value">28,8 mil</span>
+                                </div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">Interacciones:</span>
+                                    <span class="video-metric-value">3.108</span>
+                                </div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">CTR:</span>
+                                    <span class="video-metric-value">0,78%</span>
+                                </div>
+                                <div class="video-metrics-row">
+                                    <span class="video-metric-label">Inversión:</span>
+                                    <span class="video-metric-value">$23.353,27</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-indicators">
+                    <div class="carousel-dot active"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                </div>
+            </div>
+            
+            <div class="video-metric-summary">
+                <div class="summary-row">
+                    <div class="summary-item">
+                        <span class="summary-value">0,36%</span>
+                        <span class="summary-label">CTR promedio</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-value">$27.000</span>
+                        <span class="summary-label">Inversión promedio</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-value">177</span>
+                        <span class="summary-label">Mayor reacción</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section youtube-section">
+        <div class="section-header">
+            <h2 class="section-title">Contenido en YouTube</h2>
+        </div>
+        <div class="section-content">
+            <div class="youtube-metrics">
+                <div class="platform-header youtube-header">
+                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/youtube.svg" alt="YouTube" class="platform-icon">
+                    <h3 class="platform-name">Métricas destacadas</h3>
+                </div>
+                
+                <div class="youtube-stats">
+                    <div class="youtube-stat-item">
+                        <div class="youtube-stat-icon">👁️</div>
+                        <div class="youtube-stat-content">
+                            <div class="youtube-stat-value">644.443</div>
+                            <div class="youtube-stat-label">Visualizaciones</div>
+                            <div class="youtube-stat-change up">+174,8%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="youtube-stat-item">
+                        <div class="youtube-stat-icon">👍</div>
+                        <div class="youtube-stat-content">
+                            <div class="youtube-stat-value">38</div>
+                            <div class="youtube-stat-label">Interacciones</div>
+                            <div class="youtube-stat-change up">+245,5%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="youtube-stat-item">
+                        <div class="youtube-stat-icon">🎬</div>
+                        <div class="youtube-stat-content">
+                            <div class="youtube-stat-value">10</div>
+                            <div class="youtube-stat-label">Publicaciones</div>
+                            <div class="youtube-stat-change down">-9,1%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="youtube-best-performers">
+                    <h4 class="youtube-subsection-title">Videos más vistos</h4>
+                    <div class="youtube-video-row">
+                        <div class="youtube-video-thumbnail">
+                            <img src="/api/placeholder/120/68" alt="Video 1">
+                            <span class="youtube-video-duration">3:42</span>
+                        </div>
+                        <div class="youtube-video-details">
+                            <div class="youtube-video-title">Inauguración Obras Viales - Zona Norte</div>
+                            <div class="youtube-video-stats">
+                                <span class="youtube-views">12.450 vistas</span>
+                                <span class="youtube-date">· 2 semanas</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="youtube-video-row">
+                        <div class="youtube-video-thumbnail">
+                            <img src="/api/placeholder/120/68" alt="Video 2">
+                            <span class="youtube-video-duration">5:16</span>
+                        </div>
+                        <div class="youtube-video-details">
+                            <div class="youtube-video-title">Discurso Apertura Legislativa 2025</div>
+                            <div class="youtube-video-stats">
+                                <span class="youtube-views">8.329 vistas</span>
+                                <span class="youtube-date">· 3 semanas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Rendimiento del Contenido</h2>
+        </div>
+        <div class="section-content">
+            <div class="content-analysis">
+                <p>El incremento de seguidores es continuo, pero la interacción sigue siendo baja. La tasa de interacción promedio de los posts más exitosos ronda el 2%.</p>
+                
+                <h3>Publicaciones con mejor rendimiento:</h3>
+                <ul>
+                    <li>Discurso del 1° de marzo.</li>
+                    <li>Turismo y actividades en Neuquén.</li>
+                    <li>Post de tono personal: "Camino de la fe".</li>
+                </ul>
+                
+                <h3>Comparación con otros perfiles:</h3>
+                <ul>
+                    <li>El perfil de RF es más institucional en su feed.</li>
+                    <li>Los gobernadores con mejor desempeño usan primera persona en los textos.</li>
+                    <li>La cercanía personal de RF, visible en sus stories, no se refleja en el feed.</li>
+                    <li>Los otros mandatarios aprovechan tendencias audiovisuales como selfies y vlogs.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Contenidos Actuales</h2>
+        </div>
+        <div class="section-content">
+            <div class="content-analysis">
+                <h3>Publicaciones predominantes en el feed:</h3>
+                <ul>
+                    <li><strong>Institucionales y de Gestión:</strong> Informes sobre reuniones oficiales, anuncios de políticas públicas y avances en proyectos gubernamentales.</li>
+                    <li><strong>Identidad y Cultura Local:</strong> Imágenes y videos sobre la cultura, tradiciones y paisajes de Neuquén.</li>
+                </ul>
+                
+                <h3>Menor presencia en el feed:</h3>
+                <ul>
+                    <li><strong>Contenido Personal y Reflexivo:</strong> Publicaciones sobre pensamientos personales, reflexiones o momentos significativos de la vida de RF.</li>
+                </ul>
+                
+                <h3>Predominantes en stories:</h3>
+                <ul>
+                    <li><strong>Interacción con la Comunidad:</strong> Videos de encuentros con ciudadanos, visitas a comunidades y participación en eventos públicos.</li>
+                </ul>
+                
+                <h3>Contenido Publicitario:</h3>
+                <ul>
+                    <li>Difusión de Fiestas Populares.</li>
+                    <li>Placas y videos sobre hitos de la gestión.</li>
+                    <li>Sección "Neuquén es Única".</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section strategy-section">
+        <div class="section-header">
+            <h2 class="section-title">Estrategias para Optimizar</h2>
+        </div>
+        <div class="section-content">
+            <div class="strategy-item">
+                <h3>1. Replicar formatos exitosos</h3>
+                <ul>
+                    <li>Incorporar más contenido que muestre a Rolo Figueroa de manera cercana y espontánea, no solo en stories, sino también en el feed.</li>
+                    <li>Crear un equilibrio entre contenido institucional y cotidiano.</li>
+                    <li>Usar reels dinámicos, historias interactivas y carruseles informativos.</li>
+                    <li>Potenciar la interacción con encuestas, preguntas y respuestas a comentarios.</li>
+                </ul>
+            </div>
+            
+            <div class="strategy-item">
+                <h3>2. Aumentar el engagement</h3>
+                <ul>
+                    <li>Crear una sección fija de "Preguntale a Rolo", donde responda preguntas clave de la gente en video.</li>
+                    <li>Incentivar a los seguidores a compartir contenido con un hashtag oficial y repostear sus publicaciones.</li>
+                    <li>Destacar testimonios y experiencias de la comunidad en el perfil.</li>
+                </ul>
+            </div>
+            
+            <div class="strategy-item">
+                <h3>3. Optimizar primera impresión</h3>
+                <ul>
+                    <li><strong>Enlace en la biografía:</strong> Usar Linktree para facilitar el acceso a proyectos clave, inscripciones y contacto.</li>
+                    <li><strong>Publicaciones ancladas:</strong>
+                        <ul class="nested-list">
+                            <li>Carrusel de bienvenida con su visión y valores.</li>
+                            <li>Reel explicando los ejes de gestión en menos de 30 segundos.</li>
+                            <li>Post destacando su conexión con la gente.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Historias destacadas organizadas:</strong>
+                        <ul class="nested-list">
+                            <li>Ordenar para Redistribuir</li>
+                            <li>Regionalización</li>
+                            <li>Neuquinidad</li>
+                            <li>NeuquénEnObras</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">Conclusiones</h2>
+        </div>
+        <div class="section-content">
+            <p>El perfil de RF ha crecido de manera sostenida, superando a otros gobernadores en relación con la población de su provincia. Sin embargo, la interacción sigue siendo baja.</p>
+            <p>Para mejorar el engagement, es clave incorporar un tono más cercano en el feed, potenciar las tendencias audiovisuales y fortalecer la interacción con los seguidores.</p>
+            <p>La intención no es modificar la imagen construida de Rolo Figueroa, sino incorporar herramientas propias de las redes sociales que potencien su alcance y conexión con la audiencia, sin perder la seriedad ni el tono institucional.</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Reporte generado el 22 de marzo de 2025 • Todos los datos son aproximados y están sujetos a cambios</p>
+    </div>
