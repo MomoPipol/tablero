@@ -1924,21 +1924,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="footer">
 <p>Reporte generado el 22 de marzo de 2025 • Todos los datos son aproximados y están sujetos a cambios</p>
 </div>
-<script>
-$(document).ready(function() {
-  $('#governorsTable').DataTable({
-    paging: false,       // Sin paginación si ya tienes scroll vertical
-    ordering: true,      // Permitir ordenamiento
-    info: false,         // Ocultar información extra ("Mostrando X de Y entradas")
-    order: [[0, "asc"]], // Orden inicial por la columna "Gobernador"
-    language: {
-      search: "Buscar:",
-      zeroRecords: "No se encontraron resultados",
-      infoEmpty: ""
-    }
-  });
-});
-</script>
+
 
 </body>
 </html>
