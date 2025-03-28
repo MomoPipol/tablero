@@ -917,9 +917,9 @@
       // Función para inicializar/actualizar el gráfico de comparación de seguidores
       function updateComparisonChart(data, networkName) {
         const ctx = document.getElementById("governorsComparisonChart").getContext("2d");
-        if (window.governorsComparisonChart) {
-          window.governorsComparisonChart.destroy();
-        }
+        if (window.governorsComparisonChart && typeof window.governorsComparisonChart.destroy === 'function') {
+  window.governorsComparisonChart.destroy();
+}
         const top10Data = [...data].sort((a, b) => b.mar2025 - a.mar2025).slice(0, 10);
         if (!top10Data.some(item => item.governor.includes("Figueroa"))) {
           const figueroaData = data.find(item => item.governor.includes("Figueroa"));
@@ -1006,9 +1006,9 @@
       // Función para inicializar/actualizar el gráfico de evolución (crecimiento porcentual)
       function updateEvolutionChart(data, networkName) {
         const ctx = document.getElementById("followersEvolutionChart").getContext("2d");
-        if (window.followersEvolutionChart) {
-          window.followersEvolutionChart.destroy();
-        }
+        if (window.followersEvolutionChart && typeof window.followersEvolutionChart.destroy === 'function') {
+  window.followersEvolutionChart.destroy();
+}
         const filteredData = [...data].sort((a, b) => parseFloat(b.percentageChange) - parseFloat(a.percentageChange)).slice(0, 10);
         if (!filteredData.some(item => item.governor.includes("Figueroa"))) {
           const figueroaData = data.find(item => item.governor.includes("Figueroa"));
@@ -1075,7 +1075,6 @@
           }
         });
       }
-
       // Función para actualizar las conclusiones
       function updateConclusions(network) {
         document.getElementById("conclusionText").innerHTML = socialMediaData[network].conclusion;
