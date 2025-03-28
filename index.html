@@ -964,54 +964,53 @@
 
   // Función para llenar la tabla dinámicamente
   function populateTable(data) {
-    const tableBody = document.getElementById("governorsTableBody");
-    if (!tableBody) {
-      console.error("Elemento governorsTableBody no encontrado");
-      return;
-    }
-    
-    tableBody.innerHTML = "";
-    
-    // Ordenar por porcentaje de cambio (mayor a menor)
-    data.sort((a, b) => parseFloat(b.percentageChange) - parseFloat(a.percentageChange));
-    
-    data.forEach(item => {
-      const row = document.createElement("tr");
-      if (item.governor.includes("Figueroa")) {
-        row.classList.add("current-governor"); // Cambiado de sticky-row a current-governor
-      }
-      
-      row.innerHTML = `
-        <td>${item.governor}</td>
-        <td>${item.dec2024.toLocaleString()}</td>
-        <td>${item.mar2025.toLocaleString()}</td>
-        <td class="${item.variation > 0 ? "up" : (item.variation < 0 ? "down" : "neutral")}">
-          ${item.variation > 0 ? "+" : ""}${item.variation.toLocaleString()}
-        </td>
-        <td class="${item.variation > 0 ? "highlight" : ""}">${item.percentageChange}%</td>
-      `;
-      
-      tableBody.appendChild(row);
-    });
-    
-    // Refrescar DataTables después de modificar el contenido
-    if ($.fn.DataTable.isDataTable('#governorsTable')) {
-      $('#governorsTable').DataTable().destroy();
-    }
-    
-    $('#governorsTable').DataTable({
-      paging: false,
-      ordering: true,
-      info: false,
-      order: [[4, "desc"]], // Ordenar por porcentaje de cambio
-      language: {
-        search: "Buscar:",
-        zeroRecords: "No se encontraron resultados",
-        infoEmpty: ""
-      }
-    });
+  const tableBody = document.getElementById("governorsTableBody");
+  if (!tableBody) {
+    console.error("Elemento governorsTableBody no encontrado");
+    return;
   }
-
+  
+  tableBody.innerHTML = "";
+  
+  // Ordenar por porcentaje de cambio (mayor a menor)
+  data.sort((a, b) => parseFloat(b.percentageChange) - parseFloat(a.percentageChange));
+  
+  data.forEach(item => {
+    const row = document.createElement("tr");
+    if (item.governor.includes("Figueroa")) {
+      row.classList.add("current-governor");
+    }
+    
+    row.innerHTML = `
+      <td>${item.governor}</td>
+      <td>${item.dec2024.toLocaleString()}</td>
+      <td>${item.mar2025.toLocaleString()}</td>
+      <td class="${item.variation > 0 ? "up" : (item.variation < 0 ? "down" : "neutral")}">
+        ${item.variation > 0 ? "+" : ""}${item.variation.toLocaleString()}
+      </td>
+      <td class="${item.variation > 0 ? "highlight" : ""}">${item.percentageChange}%</td>
+    `;
+    
+    tableBody.appendChild(row);
+  });
+  
+  // Refrescar DataTables después de modificar el contenido
+  if ($.fn.DataTable.isDataTable('#governorsTable')) {
+    $('#governorsTable').DataTable().destroy();
+  }
+  
+  $('#governorsTable').DataTable({
+    paging: false,
+    ordering: true,
+    info: false,
+    order: [[4, "desc"]], // Ordenar por porcentaje de cambio
+    language: {
+      search: "Buscar:",
+      zeroRecords: "No se encontraron resultados",
+      infoEmpty: ""
+    }
+  });
+}
   // Función para actualizar conclusiones
   function updateConclusions(socialNetwork) {
     const conclusionText = document.getElementById("conclusionText");
