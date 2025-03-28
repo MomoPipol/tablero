@@ -460,76 +460,82 @@
       <h2 class="section-title">Análisis Comparativo de Crecimiento entre Gobernadores</h2>
     </div>
     <div class="section-content">
-      <!-- Selector de redes sociales -->
-<div class="social-media-selector">
-    <div class="social-network-tabs">
-      <button class="social-tab active" data-network="instagram">
-        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/instagram.svg" alt="Instagram">
-        <span>Instagram</span>
-      </button>
-      <button class="social-tab" data-network="facebook">
-        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/facebook.svg" alt="Facebook">
-        <span>Facebook</span>
-      </button>
-      <button class="social-tab" data-network="twitter">
-        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/twitter.svg" alt="Twitter">
-        <span>Twitter</span>
-      </button>
-      <button class="social-tab" data-network="tiktok">
-        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/tiktok.svg" alt="TikTok">
-        <span>TikTok</span>
-      </button>
-      <button class="social-tab" data-network="youtube">
-        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/youtube.svg" alt="YouTube">
-        <span>YouTube</span>
-      </button>
+        <!-- Selector de redes sociales -->
+        <div class="social-media-selector">
+          <div class="social-network-tabs">
+            <button class="social-tab active" data-network="instagram">
+              <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/instagram.svg" alt="Instagram">
+              <span>Instagram</span>
+            </button>
+            <button class="social-tab" data-network="facebook">
+              <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/facebook.svg" alt="Facebook">
+              <span>Facebook</span>
+            </button>
+            <button class="social-tab" data-network="twitter">
+              <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/twitter.svg" alt="Twitter">
+              <span>Twitter</span>
+            </button>
+            <button class="social-tab" data-network="tiktok">
+              <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/tiktok.svg" alt="TikTok">
+              <span>TikTok</span>
+            </button>
+            <button class="social-tab" data-network="youtube">
+              <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/youtube.svg" alt="YouTube">
+              <span>YouTube</span>
+            </button>
+          </div>
+  
+        <!-- Descripción dinámica -->
+        <p class="network-description">
+          <!-- Se actualizará según la red seleccionada -->
+        </p>
+      </div>
+        <!-- Gráfico 1: Comparación de seguidores -->
+        <h3 class="chart-title">Comparación de Seguidores <span class="network-name">Instagram</span></h3>
+        <div class="chart-container-wrapper">
+          <div class="chart-scroll-container">
+            <canvas id="governorsComparisonChart" width="1200" height="300"></canvas>
+          </div>
+        </div>
+  
+        <!-- Gráfico 2: Evolución de seguidores -->
+        <h3 class="chart-title">Evolución de Seguidores <span class="network-name">Instagram</span></h3>
+        <div class="chart-container-wrapper">
+          <div class="chart-scroll-container">
+            <canvas id="followersEvolutionChart" width="1200" height="300"></canvas>
+          </div>
+        </div>
+  
+        <!-- Tabla comparativa -->
+        <div class="data-table-container">
+          <h3>Evolución de seguidores en <span class="network-name">Instagram</span> (Dic 2024 - Mar 2025)</h3>
+          <div class="table-scroll-container">
+            <table class="governors-table">
+              <thead>
+                <tr>
+                  <th>Gobernador</th>
+                  <th>Dic 2024</th>
+                  <th>Mar 2025</th>
+                  <th>Variación</th>
+                  <th>%</th>
+                </tr>
+              </thead>
+              <tbody id="governorsTableBody">
+                <!-- Se llenará dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+          <p class="table-caption">Fuente: Datos recopilados de cuentas oficiales - Dic 2024 a Mar 2025</p>
+        </div>
+  
+        <!-- Caja de conclusiones -->
+        <div class="conclusions-box">
+          <p><strong>Conclusión:</strong> <span id="conclusionText"></span></p>
+          <p class="warning" id="warningText"></p>
+        </div>
+      </div>
     </div>
-    <!-- Añadir este párrafo para la descripción de la red -->
-    <p class="network-description"></p>
-  </div>
-      </div>
-      <!-- Gráfico 1: Comparación de Seguidores -->
-      <h3 class="chart-title">Comparación de Seguidores <span class="network-name">Instagram</span></h3>
-      <div class="chart-container-wrapper">
-        <div class="chart-scroll-container">
-          <canvas id="governorsComparisonChart" width="1200" height="300"></canvas>
-        </div>
-      </div>
-      <!-- Gráfico 2: Evolución de Seguidores -->
-      <h3 class="chart-title">Evolución de Seguidores <span class="network-name">Instagram</span></h3>
-      <div class="chart-container-wrapper">
-        <div class="chart-scroll-container">
-          <canvas id="followersEvolutionChart" width="1200" height="300"></canvas>
-        </div>
-      </div>
-      <!-- Tabla comparativa -->
-      <div class="data-table-container">
-        <h3>Evolución de seguidores en <span class="network-name">Instagram</span> (Dic 2024 - Mar 2025)</h3>
-        <div class="table-scroll-container">
-          <table class="governors-table">
-            <thead>
-              <tr>
-                <th>Gobernador</th>
-                <th>Dic 2024</th>
-                <th>Mar 2025</th>
-                <th>Variación</th>
-                <th>%</th>
-              </tr>
-            </thead>
-            <tbody id="governorsTableBody">
-              <!-- Se llenará dinámicamente -->
-            </tbody>
-          </table>
-        </div>
-        <p class="table-caption">Fuente: Datos recopilados de cuentas oficiales - Dic 2024 a Mar 2025</p>
-      </div>
-      <!-- Caja de conclusiones -->
-      <div class="conclusions-box">
-        <p><strong>Conclusión:</strong> <span id="conclusionText"></span></p>
-        <p class="warning" id="warningText"></p>
-      </div>
-    </div>
-  </div>
+  
   <!-- Sección: Contenido más Exitoso en Meta -->
   <div class="section">
     <div class="section-header">
@@ -571,14 +577,14 @@
   </div>
   <!-- Bloque de inicialización de gráficos con Chart.js -->
   <script>
-     document.addEventListener('DOMContentLoaded', function() {
-    // Verificar si Chart está disponible
-    if (typeof Chart === 'undefined') {
-      console.error('Chart.js no está cargado correctamente');
-    } else {
-      console.log('Chart.js está cargado correctamente');
-
     document.addEventListener('DOMContentLoaded', function() {
+  // Verificar si Chart está disponible
+  if (typeof Chart === 'undefined') {
+    console.error('Chart.js no está cargado correctamente');
+    return; // Detener la ejecución si Chart no está disponible
+  }
+  
+  console.log('Chart.js está cargado correctamente');
       // Datos completos de redes sociales (tomados de los elementos entregados)
       const socialMediaData = {
         instagram: {
@@ -1075,7 +1081,6 @@
         document.getElementById("conclusionText").innerHTML = socialMediaData[network].conclusion;
         document.getElementById("warningText").innerHTML = socialMediaData[network].warning;
       }
-
       // Función para actualizar la descripción dinámica
       function updateDescription(socialNetwork) {
         let description = "";
