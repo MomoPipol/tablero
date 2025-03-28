@@ -391,7 +391,13 @@
         .governors-table .current-governor {
             background-color: rgba(46, 204, 113, 0.1);
         }
-        
+        <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
         .table-caption {
             font-size: 11px;
             color: #777;
@@ -864,149 +870,223 @@
         </div>
     </div>
 </div>
-<div class="section">
-<div class="section-header">
-    <h2 class="section-title">Análisis Comparativo de Crecimiento entre gobernadores </h2>
+<!-- Reemplazar esta sección en index3.html -->
+<div class="data-table-container">
+  <h3>Evolución de seguidores en <span class="network-name">Instagram</span> (Dic 2024 - Mar 2025)</h3>
+  <div class="table-scroll-container">
+    <table id="governorsTable" class="governors-table">
+      <thead>
+        <tr>
+          <th>Gobernador</th>
+          <th>Dic 2024</th>
+          <th>Mar 2025</th>
+          <th>Variación</th>
+          <th>%</th>
+        </tr>
+      </thead>
+      <tbody id="governorsTableBody">
+        <!-- La tabla se llenará dinámicamente mediante JavaScript -->
+      </tbody>
+    </table>
+  </div>
+  <p class="table-caption">Fuente: Datos recopilados de cuentas oficiales - Dic 2024 a Mar 2025</p>
 </div>
-<div class="section-content">
-    <p>Entre diciembre de 2024 y febrero de 2025, el perfil aumentó de 31.266 seguidores a 38.520, lo que representa aproximadamente un 1% de incremento en relación a la población de Neuquén. Este crecimiento supera el rendimiento de los tres gobernadores con mayor popularidad en redes.</p>
-    
-    <div class="chart-container-wrapper">
-        <canvas id="governorsChart" width="100%" height="200"></canvas>
-    </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('governorsChart').getContext('2d');
-            
-            const chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['R. Quintela', 'G. Valdés', 'R. Frigerio', 'R. Figueroa', 'A. Weretilneck'],
-                    datasets: [{
-                        label: 'Dic 2024',
-                        data: [46952, 140000, 134982, 31266, 30000],
-                        backgroundColor: 'rgba(108, 117, 125, 0.7)',
-                        borderColor: 'rgba(108, 117, 125, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Feb 2025',
-                        data: [47500, 143000, 136000, 38520, 33400],
-                        backgroundColor: 'rgba(46, 204, 113, 0.7)',
-                        borderColor: 'rgba(46, 204, 113, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    title: {
-                        display: true,
-                        text: 'Seguidores en Instagram',
-                        fontSize: 14,
-                        fontColor: '#333'
-                    },
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        labels: {
-                            boxWidth: 12,
-                            padding: 10
-                        }
-                    },
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                callback: function(value) {
-                                    if (value >= 1000) {
-                                        return value / 1000 + 'k';
-                                    }
-                                    return value;
-                                }
-                            },
-                            gridLines: {
-                                display: true,
-                                color: "rgba(0, 0, 0, 0.05)"
-                            }
-                        }],
-                        xAxes: [{
-                            gridLines: {
-                                display: false
-                            },
-                            ticks: {
-                                fontSize: 10
-                            }
-                        }]
-                    },
-                    tooltips: {
-                        callbacks: {
-                            label: function(tooltipItem, data) {
-                                return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel.toLocaleString();
-                            }
-                        }
-                    }
-                }
-            });
-        });
-    </script>
-    
-    <div class="data-table-container">
-        <h3>Evolución de seguidores en Instagram (Dic 2024 - Feb 2025)</h3>
-        <div class="table-scroll">
-            <table class="governors-table">
-                <thead>
-                    <tr>
-                        <th>Gobernador</th>
-                        <th>Dic 2024</th>
-                        <th>Feb 2025</th>
-                        <th>Variación</th>
-                        <th>% IG</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Ricardo Quintela (LRI)</td>
-                        <td>46.952</td>
-                        <td>47.500</td>
-                        <td class="up">+548</td>
-                        <td class="highlight">12,4%</td>
-                    </tr>
-                    <tr>
-                        <td>Gustavo Valdés (CORR)</td>
-                        <td>140.000</td>
-                        <td>143.000</td>
-                        <td class="up">+3.000</td>
-                        <td class="highlight">11,8%</td>
-                    </tr>
-                    <tr>
-                        <td>Rogelio Frigerio (ERI)</td>
-                        <td>134.982</td>
-                        <td>136.000</td>
-                        <td class="up">+1.018</td>
-                        <td class="highlight">9,5%</td>
-                    </tr>
-                    <tr class="current-governor">
-                        <td>Rolando Figueroa (NQN)</td>
-                        <td>31.266</td>
-                        <td>38.520</td>
-                        <td class="up highlight-growth">+7.254</td>
-                        <td class="highlight">5,3%</td>
-                    </tr>
-                    <tr>
-                        <td>Alberto Weretilneck (RNE)</td>
-                        <td>30.000</td>
-                        <td>33.400</td>
-                        <td class="up">+3.400</td>
-                        <td class="highlight">4,4%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <p class="table-caption">Fuente: Datos recopilados de cuentas oficiales - Dic 2024 a Feb 2025</p>
-    </div>
-    
+
+<div class="conclusions-box">
+  <p><strong>Conclusión:</strong> <span id="conclusionText"></span></p>
+  <p class="warning" id="warningText"></p>
+</div>
+
+<!-- Incluir jQuery y DataTables en el <head> (o antes de este script) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Inicializar DataTables para la tabla de gobernadores
+  $(document).ready(function() {
+    $('#governorsTable').DataTable({
+      paging: false,
+      ordering: true,
+      info: false,
+      order: [[0, "asc"]],
+      language: {
+        search: "Buscar:",
+        zeroRecords: "No se encontraron resultados",
+        infoEmpty: ""
+      }
+    });
+  });
+
+  // Datos reales para 24 gobernadores (ejemplo para Instagram; las demás redes se configuran de forma similar)
+  const socialMediaData = {
+    instagram: {
+      dec2024: [
+        { governor: "Rogelio Frigerio (ERI)", followers: 134982 },
+        { governor: "Ricardo Quintela (LRI)", followers: 46952 },
+        { governor: "Gustavo Valdés (CORR)", followers: 140000 },
+        { governor: "Gustavo Melella (TDF)", followers: 13700 },
+        { governor: "Gerardo Zamora (SDE)", followers: 61957 },
+        { governor: "Jorge Macri (CABA)", followers: 198992 },
+        { governor: "Gildo Insfrán (FOR)", followers: 50957 },
+        { governor: "Claudio Vidal (SCR)", followers: 30800 },
+        { governor: "Claudio Poggi (SLU)", followers: 39600 },
+        { governor: "Rolando Figueroa (NQN)", followers: 31266 },
+        { governor: "Ignacio Torres (CHU)", followers: 52500 },
+        { governor: "Raúl Jalil (CAT)", followers: 23300 },
+        { governor: "Axel Kicillof (PBA)", followers: 1093062 },
+        { governor: "Marcelo Orrego (SJU)", followers: 49100 },
+        { governor: "Gustavo Sáenz (SAL)", followers: 53320 },
+        { governor: "Alberto Weretilneck (RNE)", followers: 30000 },
+        { governor: "Leandro Zdero (CHA)", followers: 90900 },
+        { governor: "Sergio Ziliotto (LPA)", followers: 20500 },
+        { governor: "Alfredo Cornejo (MZA)", followers: 42908 },
+        { governor: "Maximiliano Pullaro (SFE)", followers: 144240 },
+        { governor: "Martín Llaryora (CBA)", followers: 87100 },
+        { governor: "Hugo Passalacqua (MIS)", followers: 44500 },
+        { governor: "Osvaldo Jaldo (TUC)", followers: 24600 },
+        { governor: "Carlos Sadir (JUJ)", followers: 6667 }
+      ],
+      mar2025: [
+        { governor: "Rogelio Frigerio (ERI)", followers: 136000 },
+        { governor: "Ricardo Quintela (LRI)", followers: 47500 },
+        { governor: "Gustavo Valdés (CORR)", followers: 143000 },
+        { governor: "Gustavo Melella (TDF)", followers: 13800 },
+        { governor: "Gerardo Zamora (SDE)", followers: 66100 },
+        { governor: "Jorge Macri (CABA)", followers: 205000 },
+        { governor: "Gildo Insfrán (FOR)", followers: 52000 },
+        { governor: "Claudio Vidal (SCR)", followers: 31000 },
+        { governor: "Claudio Poggi (SLU)", followers: 40681 },
+        { governor: "Rolando Figueroa (NQN)", followers: 40829 },
+        { governor: "Ignacio Torres (CHU)", followers: 54019 },
+        { governor: "Raúl Jalil (CAT)", followers: 24171 },
+        { governor: "Axel Kicillof (PBA)", followers: 1097610 },
+        { governor: "Marcelo Orrego (SJU)", followers: 55204 },
+        { governor: "Gustavo Sáenz (SAL)", followers: 54870 },
+        { governor: "Alberto Weretilneck (RNE)", followers: 33574 },
+        { governor: "Leandro Zdero (CHA)", followers: 96784 },
+        { governor: "Sergio Ziliotto (LPA)", followers: 20804 },
+        { governor: "Alfredo Cornejo (MZA)", followers: 43970 },
+        { governor: "Maximiliano Pullaro (SFE)", followers: 149181 },
+        { governor: "Martín Llaryora (CBA)", followers: 88989 },
+        { governor: "Hugo Passalacqua (MIS)", followers: 46742 },
+        { governor: "Osvaldo Jaldo (TUC)", followers: 26041 },
+        { governor: "Carlos Sadir (JUJ)", followers: 7447 }
+      ],
+      conclusion: "El perfil de Instagram de Rolando Figueroa destaca por su crecimiento significativo.",
+      warning: "Revisar contenido para mantener la tendencia positiva."
+    },
+    // Se pueden agregar los datos para facebook, twitter, tiktok y youtube de forma similar...
+  };
+
+  // Función para calcular variación y porcentaje de cambio
+  function processData(socialNetwork) {
+    const data = socialMediaData[socialNetwork];
+    const result = [];
+    const decData = data.dec2024;
+    const marData = data.mar2025;
+    for (let i = 0; i < decData.length; i++) {
+      const dec = decData[i];
+      const mar = marData[i];
+      const variation = mar.followers - dec.followers;
+      const percentageChange = dec.followers > 0 ? ((variation / dec.followers) * 100).toFixed(1) : "N/A";
+      result.push({
+        governor: dec.governor,
+        dec2024: dec.followers,
+        mar2025: mar.followers,
+        variation: variation,
+        percentageChange: percentageChange
+      });
+    }
+    return result;
+  }
+
+  // Función para llenar la tabla dinámicamente
+  function populateTable(data) {
+    const tableBody = document.getElementById("governorsTableBody");
+    tableBody.innerHTML = "";
+    // Ordenar por porcentaje de cambio (mayor a menor)
+    data.sort((a, b) => parseFloat(b.percentageChange) - parseFloat(a.percentageChange));
+    data.forEach(item => {
+      const row = document.createElement("tr");
+      if (item.governor.includes("Figueroa")) {
+        row.classList.add("sticky-row");
+      }
+      row.innerHTML = `
+        <td>${item.governor}</td>
+        <td>${item.dec2024.toLocaleString()}</td>
+        <td>${item.mar2025.toLocaleString()}</td>
+        <td class="${item.variation > 0 ? "up" : (item.variation < 0 ? "down" : "neutral")}">
+          ${item.variation > 0 ? "+" : ""}${item.variation.toLocaleString()}
+        </td>
+        <td class="highlight">${item.percentageChange}%</td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  // Funciones para actualizar gráficos (Comparación y Evolución) se mantienen iguales...
+  // Aquí se incluyen updateComparisonChart() y updateEvolutionChart() que usan Chart.js
+
+  // Función para actualizar la descripción según la red seleccionada
+  function updateDescription(socialNetwork) {
+    let description = "";
+    switch (socialNetwork) {
+      case "instagram":
+        description = "Entre diciembre de 2024 y marzo de 2025, el perfil de Instagram de Rolando Figueroa mostró un crecimiento significativo.";
+        break;
+      case "facebook":
+        description = "En Facebook, el crecimiento de Rolando Figueroa es moderado, manteniendo una base sólida de seguidores.";
+        break;
+      case "twitter":
+        description = "En Twitter, el perfil de Rolando Figueroa creció de manera modesta, evidenciando su uso principal como canal de posicionamiento.";
+        break;
+      case "tiktok":
+        description = "TikTok muestra potencial en crecimiento; algunos perfiles presentan cifras bajas, por lo que es clave una estrategia específica.";
+        break;
+      case "youtube":
+        description = "En YouTube, el número de suscriptores de Rolando Figueroa se mantuvo estable, reflejando la naturaleza del contenido audiovisual.";
+        break;
+    }
+    document.querySelector(".network-description").textContent = description;
+  }
+
+  // Función para actualizar todo el dashboard según la red seleccionada
+  function updateDashboard(socialNetwork) {
+    document.querySelectorAll(".social-tab").forEach(tab => {
+      tab.classList.remove("active");
+      if (tab.getAttribute("data-network") === socialNetwork) {
+        tab.classList.add("active");
+      }
+    });
+    document.querySelectorAll(".network-name").forEach(element => {
+      element.textContent = socialNetwork.charAt(0).toUpperCase() + socialNetwork.slice(1);
+    });
+    updateDescription(socialNetwork);
+    const processedData = processData(socialNetwork);
+    populateTable(processedData);
+    // Aquí se invocarían también las funciones para actualizar los gráficos (no incluidas en este fragmento)
+    // updateComparisonChart(processedData, socialNetwork.charAt(0).toUpperCase() + socialNetwork.slice(1));
+    // updateEvolutionChart(processedData, socialNetwork.charAt(0).toUpperCase() + socialNetwork.slice(1));
+    // Actualizar conclusiones
+    document.getElementById("conclusionText").innerHTML = socialMediaData[socialNetwork].conclusion;
+    document.getElementById("warningText").innerHTML = socialMediaData[socialNetwork].warning;
+  }
+
+  // Configurar event listeners para las tabs de redes sociales
+  document.querySelectorAll(".social-tab").forEach(tab => {
+    tab.addEventListener("click", function() {
+      const network = this.getAttribute("data-network");
+      updateDashboard(network);
+    });
+  });
+
+  // Inicializar el dashboard con Instagram por defecto
+  updateDashboard("instagram");
+});
+</script>
+
     <div class="conclusions-box">
         <p><strong>Conclusión:</strong> El perfil de Rolo Figueroa es el que mayor crecimiento tuvo, manteniendo una tendencia positiva durante marzo (dato actualizado: <span class="highlight">40.700 seguidores</span>).</p>
         <p class="warning">Sin embargo, en los últimos 30 días, <strong>800 perfiles dejaron de seguir la cuenta</strong>, lo que refuerza la necesidad de optimizar el contenido para fidelizar seguidores.</p>
@@ -1844,5 +1924,21 @@
 <div class="footer">
 <p>Reporte generado el 22 de marzo de 2025 • Todos los datos son aproximados y están sujetos a cambios</p>
 </div>
+<script>
+$(document).ready(function() {
+  $('#governorsTable').DataTable({
+    paging: false,       // Sin paginación si ya tienes scroll vertical
+    ordering: true,      // Permitir ordenamiento
+    info: false,         // Ocultar información extra ("Mostrando X de Y entradas")
+    order: [[0, "asc"]], // Orden inicial por la columna "Gobernador"
+    language: {
+      search: "Buscar:",
+      zeroRecords: "No se encontraron resultados",
+      infoEmpty: ""
+    }
+  });
+});
+</script>
+
 </body>
 </html>
