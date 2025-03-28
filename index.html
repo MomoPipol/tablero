@@ -903,14 +903,15 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
-<script> document.addEventListener('DOMContentLoaded', function() {
+<script>
+document.addEventListener('DOMContentLoaded', function() {
   // Inicializar DataTables para la tabla de gobernadores
   $(document).ready(function() {
     $('#governorsTable').DataTable({
       paging: false,
       ordering: true,
       info: false,
-      order: [[4, "desc"]], // Ordenar por porcentaje de cambio (columna 5) por defecto
+      order: [[0, "asc"]],
       language: {
         search: "Buscar:",
         zeroRecords: "No se encontraron resultados",
@@ -924,12 +925,54 @@
     instagram: {
       dec2024: [
         { governor: "Rogelio Frigerio (ERI)", followers: 134982 },
-        // ... datos existentes ...
+        { governor: "Ricardo Quintela (LRI)", followers: 46952 },
+        { governor: "Gustavo Valdés (CORR)", followers: 140000 },
+        { governor: "Gustavo Melella (TDF)", followers: 13700 },
+        { governor: "Gerardo Zamora (SDE)", followers: 61957 },
+        { governor: "Jorge Macri (CABA)", followers: 198992 },
+        { governor: "Gildo Insfrán (FOR)", followers: 50957 },
+        { governor: "Claudio Vidal (SCR)", followers: 30800 },
+        { governor: "Claudio Poggi (SLU)", followers: 39600 },
+        { governor: "Rolando Figueroa (NQN)", followers: 31266 },
+        { governor: "Ignacio Torres (CHU)", followers: 52500 },
+        { governor: "Raúl Jalil (CAT)", followers: 23300 },
+        { governor: "Axel Kicillof (PBA)", followers: 1093062 },
+        { governor: "Marcelo Orrego (SJU)", followers: 49100 },
+        { governor: "Gustavo Sáenz (SAL)", followers: 53320 },
+        { governor: "Alberto Weretilneck (RNE)", followers: 30000 },
+        { governor: "Leandro Zdero (CHA)", followers: 90900 },
+        { governor: "Sergio Ziliotto (LPA)", followers: 20500 },
+        { governor: "Alfredo Cornejo (MZA)", followers: 42908 },
+        { governor: "Maximiliano Pullaro (SFE)", followers: 144240 },
+        { governor: "Martín Llaryora (CBA)", followers: 87100 },
+        { governor: "Hugo Passalacqua (MIS)", followers: 44500 },
+        { governor: "Osvaldo Jaldo (TUC)", followers: 24600 },
         { governor: "Carlos Sadir (JUJ)", followers: 6667 }
       ],
       mar2025: [
         { governor: "Rogelio Frigerio (ERI)", followers: 136000 },
-        // ... datos existentes ...
+        { governor: "Ricardo Quintela (LRI)", followers: 47500 },
+        { governor: "Gustavo Valdés (CORR)", followers: 143000 },
+        { governor: "Gustavo Melella (TDF)", followers: 13800 },
+        { governor: "Gerardo Zamora (SDE)", followers: 66100 },
+        { governor: "Jorge Macri (CABA)", followers: 205000 },
+        { governor: "Gildo Insfrán (FOR)", followers: 52000 },
+        { governor: "Claudio Vidal (SCR)", followers: 31000 },
+        { governor: "Claudio Poggi (SLU)", followers: 40681 },
+        { governor: "Rolando Figueroa (NQN)", followers: 40829 },
+        { governor: "Ignacio Torres (CHU)", followers: 54019 },
+        { governor: "Raúl Jalil (CAT)", followers: 24171 },
+        { governor: "Axel Kicillof (PBA)", followers: 1097610 },
+        { governor: "Marcelo Orrego (SJU)", followers: 55204 },
+        { governor: "Gustavo Sáenz (SAL)", followers: 54870 },
+        { governor: "Alberto Weretilneck (RNE)", followers: 33574 },
+        { governor: "Leandro Zdero (CHA)", followers: 96784 },
+        { governor: "Sergio Ziliotto (LPA)", followers: 20804 },
+        { governor: "Alfredo Cornejo (MZA)", followers: 43970 },
+        { governor: "Maximiliano Pullaro (SFE)", followers: 149181 },
+        { governor: "Martín Llaryora (CBA)", followers: 88989 },
+        { governor: "Hugo Passalacqua (MIS)", followers: 46742 },
+        { governor: "Osvaldo Jaldo (TUC)", followers: 26041 },
         { governor: "Carlos Sadir (JUJ)", followers: 7447 }
       ],
       conclusion: "El perfil de Instagram de Rolando Figueroa destaca por su crecimiento significativo.",
@@ -944,13 +987,11 @@
     const result = [];
     const decData = data.dec2024;
     const marData = data.mar2025;
-    
     for (let i = 0; i < decData.length; i++) {
       const dec = decData[i];
       const mar = marData[i];
       const variation = mar.followers - dec.followers;
       const percentageChange = dec.followers > 0 ? ((variation / dec.followers) * 100).toFixed(1) : "N/A";
-      
       result.push({
         governor: dec.governor,
         dec2024: dec.followers,
@@ -1011,99 +1052,67 @@
     }
   });
 }
-  // Función para actualizar conclusiones
-  function updateConclusions(socialNetwork) {
-    const conclusionText = document.getElementById("conclusionText");
-    const warningText = document.getElementById("warningText");
-    
-    if (conclusionText && warningText) {
-      conclusionText.textContent = socialMediaData[socialNetwork].conclusion;
-      warningText.textContent = socialMediaData[socialNetwork].warning;
+  // Funciones para actualizar gráficos (Comparación y Evolución) se mantienen iguales...
+  // Aquí se incluyen updateComparisonChart() y updateEvolutionChart() que usan Chart.js
+
+  // Función para actualizar la descripción según la red seleccionada
+  function updateDescription(socialNetwork) {
+    let description = "";
+    switch (socialNetwork) {
+      case "instagram":
+        description = "Entre diciembre de 2024 y marzo de 2025, el perfil de Instagram de Rolando Figueroa mostró un crecimiento significativo.";
+        break;
+      case "facebook":
+        description = "En Facebook, el crecimiento de Rolando Figueroa es moderado, manteniendo una base sólida de seguidores.";
+        break;
+      case "twitter":
+        description = "En Twitter, el perfil de Rolando Figueroa creció de manera modesta, evidenciando su uso principal como canal de posicionamiento.";
+        break;
+      case "tiktok":
+        description = "TikTok muestra potencial en crecimiento; algunos perfiles presentan cifras bajas, por lo que es clave una estrategia específica.";
+        break;
+      case "youtube":
+        description = "En YouTube, el número de suscriptores de Rolando Figueroa se mantuvo estable, reflejando la naturaleza del contenido audiovisual.";
+        break;
     }
+    document.querySelector(".network-description").textContent = description;
   }
 
   // Función para actualizar todo el dashboard según la red seleccionada
   function updateDashboard(socialNetwork) {
-    // Actualizar tabs activas si existen
-    const socialTabs = document.querySelectorAll(".social-tab");
-    if (socialTabs.length > 0) {
-      socialTabs.forEach(tab => {
-        tab.classList.remove("active");
-        if (tab.getAttribute("data-network") === socialNetwork) {
-          tab.classList.add("active");
-        }
-      });
-    }
-    
-    // Actualizar nombres de red en la UI
+    document.querySelectorAll(".social-tab").forEach(tab => {
+      tab.classList.remove("active");
+      if (tab.getAttribute("data-network") === socialNetwork) {
+        tab.classList.add("active");
+      }
+    });
     document.querySelectorAll(".network-name").forEach(element => {
       element.textContent = socialNetwork.charAt(0).toUpperCase() + socialNetwork.slice(1);
     });
-    
-    // Procesar datos y actualizar tabla
+    updateDescription(socialNetwork);
     const processedData = processData(socialNetwork);
     populateTable(processedData);
-    
+    // Aquí se invocarían también las funciones para actualizar los gráficos (no incluidas en este fragmento)
+    // updateComparisonChart(processedData, socialNetwork.charAt(0).toUpperCase() + socialNetwork.slice(1));
+    // updateEvolutionChart(processedData, socialNetwork.charAt(0).toUpperCase() + socialNetwork.slice(1));
     // Actualizar conclusiones
-    updateConclusions(socialNetwork);
-    
-    // Cargar Instagram embeds si están presentes
-    if (window.instgrm) {
-      window.instgrm.Embeds.process();
-    }
+    document.getElementById("conclusionText").innerHTML = socialMediaData[socialNetwork].conclusion;
+    document.getElementById("warningText").innerHTML = socialMediaData[socialNetwork].warning;
   }
 
-  // Configurar event listeners para las tabs de redes sociales si existen
-  const socialTabs = document.querySelectorAll(".social-tab");
-  if (socialTabs.length > 0) {
-    socialTabs.forEach(tab => {
-      tab.addEventListener("click", function() {
-        const network = this.getAttribute("data-network");
-        updateDashboard(network);
-      });
+  // Configurar event listeners para las tabs de redes sociales
+  document.querySelectorAll(".social-tab").forEach(tab => {
+    tab.addEventListener("click", function() {
+      const network = this.getAttribute("data-network");
+      updateDashboard(network);
     });
-  } else {
-    // Si no hay tabs, agregar un selector simple
-    const headerContent = document.querySelector(".header-content");
-    if (headerContent) {
-      const networkSelector = document.createElement("div");
-      networkSelector.className = "network-selector";
-      networkSelector.innerHTML = `
-        <select id="networkSelect" style="margin-top: 10px; padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
-          <option value="instagram">Instagram</option>
-          <option value="facebook">Facebook</option>
-          <option value="twitter">Twitter</option>
-          <option value="youtube">YouTube</option>
-        </select>
-      `;
-      headerContent.appendChild(networkSelector);
-      
-      document.getElementById("networkSelect").addEventListener("change", function() {
-        updateDashboard(this.value);
-      });
-    }
-  }
+  });
 
   // Inicializar el dashboard con Instagram por defecto
   updateDashboard("instagram");
-  
-  // Asegurar que los embeds de Instagram se carguen correctamente
-  if (window.instgrm) {
-    window.instgrm.Embeds.process();
-  } else {
-    // Si el script de Instagram no está disponible, recargar
-    const instagramScript = document.createElement('script');
-    instagramScript.src = "https://www.instagram.com/embed.js";
-    instagramScript.async = true;
-    instagramScript.onload = function() {
-      if (window.instgrm) {
-        window.instgrm.Embeds.process();
-      }
-    };
-    document.body.appendChild(instagramScript);
-  }
 });
 </script>
+
     <div class="conclusions-box">
         <p><strong>Conclusión:</strong> El perfil de Rolo Figueroa es el que mayor crecimiento tuvo, manteniendo una tendencia positiva durante marzo (dato actualizado: <span class="highlight">40.700 seguidores</span>).</p>
         <p class="warning">Sin embargo, en los últimos 30 días, <strong>800 perfiles dejaron de seguir la cuenta</strong>, lo que refuerza la necesidad de optimizar el contenido para fidelizar seguidores.</p>
