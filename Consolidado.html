@@ -7,6 +7,60 @@
   <!-- Se utiliza Chart.js (versión 2.9.4) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
   <style>
+       /* Estilo para la pantalla de login */
+        #loginScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .login-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+        
+        .login-box h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .login-box button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .login-box button:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Ocultar el contenido principal hasta verificar contraseña */
+        #mainContent {
+            display: none;
+        }
     /* Estilos generales (index (3).html) */
     :root {
       --primary-color: #4a90e2;
@@ -284,6 +338,18 @@
   </style>
 </head>
 <body>
+<!-- Pantalla de Login -->
+    <div id="loginScreen">
+        <div class="login-box">
+            <h2>Acceso Restringido</h2>
+            <p>Este informe es confidencial. Por favor, ingrese la contraseña para continuar.</p>
+            <input type="password" id="passwordInput" placeholder="Contraseña">
+            <button onclick="checkPassword()">Ingresar</button>
+            <p id="errorMessage" style="color: red; display: none;">Contraseña incorrecta. Intente nuevamente.</p>
+        </div>
+    </div>
+ <!-- Contenido principal (se mostrará después de la verificación) -->
+    <div id="mainContent">
   <!-- Cabecera -->
   <div class="header">
     <div class="logo">
@@ -378,81 +444,95 @@
       </tbody>
     </table>
   </div>
-  <!-- Diagnóstico de Rendimiento -->
-  <div class="section">
-    <div class="section-header">
-      <h2 class="section-title">Diagnóstico de Rendimiento</h2>
+ <!-- Diagnóstico de Rendimiento -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Diagnóstico de Rendimiento</h2>
+  </div>
+  <div class="section-content">
+    <div class="platform-analysis">
+      <div class="platform-header">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/instagram.svg" alt="Instagram" class="platform-icon">
+        <h3 class="platform-name">Instagram: visibilidad récord</h3>
+      </div>
+      <div class="platform-insights">
+        <ul style="text-align: justify;">
+          <li>Alcance histórico: <strong>+4.004.208 personas</strong> en marzo (<span style="color: green;">▲ +63,4%</span>).</li>
+          <li>Mayor cantidad de seguidores nuevos en el mes: <strong>1.381</strong> (<span style="color: green;">▲ +3,5%</span>) que el periodo anterior.</li>
+          <li>El engagement cayó <span style="color: red;">▼ 39,9%</span>, lo que indica muchisimas visualización pero poco enganche</li>
+          <li><strong>Lectura:</strong> se requiere fortalecer la conexión emocional y el llamado a la acción.</li>
+        </ul>
+      </div>
     </div>
-    <div class="section-content">
-      <div class="platform-analysis">
-        <div class="platform-header">
-          <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/instagram.svg" alt="Instagram" class="platform-icon">
-          <h3 class="platform-name">Instagram: visibilidad récord/h3>
-        </div>
-        <div class="platform-insights">
-          <ul style="text-align: justify;">
-            <li>Alcance histórico: <strong>+4.004.208 personas</strong> en marzo (▲ +63,4%).</li>
-            <li>Mayor cantidad de seguidores nuevos en el mes: <strong>1.381</strong> (▲ +3,5%) que el periodo anterior.</li>
-            <li>El engagement cayó 39,9%, lo que indica muchisimas visualización pero poco enganche</li>
-            <li><strong> Lectura:</strong> se requiere fortalecer la conexión emocional y el llamado a la acción.</li>
-          </ul>
-        </div>
+    <div class="platform-analysis">
+      <div class="platform-header">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/youtube.svg" alt="YouTube" class="platform-icon">
+        <h3 class="platform-name">YouTube: expansión sostenida en Televisión</h3>
       </div>
-      <div class="platform-analysis">
-        <div class="platform-header">
-          <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/youtube.svg" alt="YouTube" class="platform-icon">
-          <h3 class="platform-name">YouTube: expansión sostenida en Televisión</h3>
-        </div>
-        <div class="platform-insights">
-          <ul style="text-align: justify;">
-            <li>Alcance: <strong>644.443 personas</strong> (▲ +174,8%), con visualizaciones récord (▲ +245,5%).</li>
-            <li> Fuerte rendimiento en reproducción, el 100% dispositivos en TV.</li>
-            <li><strong> Lectura:</strong> Se está priorizando el alcance y posicionamiento por sobre la suscripción. El desafío es será hacer piezas para sumar comunidad. .</li>
-          </ul>
-        </div>
+      <div class="platform-insights">
+        <ul style="text-align: justify;">
+          <li>Alcance: <strong>644.443 personas</strong> (<span style="color: green;">▲ +174,8%</span>), con visualizaciones récord (<span style="color: green;">▲ +245,5%</span>).</li>
+          <li>Fuerte rendimiento en reproducción, el 100% dispositivos en TV.</li>
+          <li><strong>Lectura:</strong> Se está priorizando el alcance y posicionamiento por sobre la suscripción. El desafío es será hacer piezas para sumar comunidad.</li>
+        </ul>
       </div>
-      <div class="platform-analysis">
-        <div class="platform-header">
-          <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/facebook.svg" alt="Facebook" class="platform-icon">
-          <h3 class="platform-name">Facebook: canal maduro y consolidado con necesidad de ajuste</h3>
-        </div>
-        <div class="platform-insights">
-          <ul style="text-align: justify;">
-            <li>Alcance: <strong>455.298 personas</strong> (▼ -28%), con seguidores nuevos y engagement en descenso este mes.</li>
-            <li>Cuenta con la mayor base histórica: <strong>131.438 seguidores</strong>.</li>
-            <li><strong> Lectura:</strong> incorporar contenidos nativos y verticales, más humanos, conversacionales y adaptados al lenguaje de la red. La comunidad está, pero hay que volver a convocarla con las reglas del juego de Facebook.</li>
-          </ul>
-        </div>
+    </div>
+    <div class="platform-analysis">
+      <div class="platform-header">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/facebook.svg" alt="Facebook" class="platform-icon">
+        <h3 class="platform-name">Facebook: canal maduro y consolidado con necesidad de ajuste</h3>
       </div>
-      <div class="platform-analysis">
-        <div class="platform-header">
-          <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/twitter.svg" alt="Twitter" class="platform-icon">
-          <h3 class="platform-name">Twitter: conversación estable</h3>
-        </div>
-        <div class="platform-insights">
-          <ul style="text-align: justify;">
-            <li>Interacciones totales: <strong>8.143</strong> (▼ -6,8%).</li>
-            <li>  El canal mantiene estabilidad en seguidores y buen alcance. </li>
-            <li> El contenido puede estar funcionando bien en visibilidad, pero no está generando suficiente conexión emocional o conversacional.</li>
-            <li><strong> Lectura:</strong> la caída en nuevos seguidores y en el engagement indica que falta impulso creativo y estratégico </li>
-          </ul>
-        </div>
+      <div class="platform-insights">
+        <ul style="text-align: justify;">
+          <li>Alcance: <strong>455.298 personas</strong> (<span style="color: red;">▼ -28%</span>), con seguidores nuevos y engagement en descenso este mes.</li>
+          <li>Cuenta con la mayor base histórica: <strong>131.438 seguidores</strong>.</li>
+          <li><strong>Lectura:</strong> incorporar contenidos nativos y verticales, más humanos, conversacionales y adaptados al lenguaje de la red. La comunidad está, pero hay que volver a convocarla con las reglas del juego de Facebook.</li>
+        </ul>
       </div>
-      <div class="platform-analysis">
-        <div class="platform-header">
-          <h3 class="platform-name">✅ Conclusión General</h3>
-        </div>
-        <div class="platform-insights">
-          <ul style="text-align: justify;">
-            <li><strong>Total de publicaciones</strong>: 308 (▲ +3,7%).</li>
-            <li><strong>Alcance mensual combinado</strong>: 5.100.000 personas (▲ +42,3%).</li>
-            <li>Presencia activa y consolidada en Instagram, YouTube, Facebook y Twitter.</li>
-            <li>El verdadero reto no es solo ser visibles, sino transformar esa visibilidad en comunidad, en conversación significativa y en participación real.</li>
-          </ul>
-        </div>
+    </div>
+    <div class="platform-analysis">
+      <div class="platform-header">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/twitter.svg" alt="Twitter" class="platform-icon">
+        <h3 class="platform-name">Twitter: conversación estable</h3>
+      </div>
+      <div class="platform-insights">
+        <ul style="text-align: justify;">
+          <li>Interacciones totales: <strong>8.143</strong> (<span style="color: red;">▼ -6,8%</span>).</li>
+          <li>El canal mantiene estabilidad en seguidores y buen alcance.</li>
+          <li>El contenido puede estar funcionando bien en visibilidad, pero no está generando suficiente conexión emocional o conversacional.</li>
+          <li><strong>Lectura:</strong> la caída en nuevos seguidores y en el engagement indica que falta impulso creativo y estratégico.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="platform-analysis">
+      <div class="platform-header">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/8.5.0/tiktok.svg" alt="TikTok" class="platform-icon">
+        <h3 class="platform-name">TikTok: crecimiento acelerado</h3>
+      </div>
+      <div class="platform-insights">
+        <ul style="text-align: justify;">
+    <li>Seguidores totales: <strong>8.423</strong> (<span style="color: #808080;">♦ 0,0%</span>).</li>
+    <li>Nuevos seguidores: <strong>226.896</strong> (<span style="color: green;">▲ +0,2%</span>).</li>
+    <li>Engagement: <strong>1.142</strong> (<span style="color: red;">▼ -2,2%</span>).</li>
+    <li><strong>Lectura:</strong> potencial alto para crecimiento si se mejora la frecuencia y adaptación al formato nativo de la plataforma.</li>
+    </ul>
+      </div>
+    </div>
+    <div class="platform-analysis">
+      <div class="platform-header">
+        <h3 class="platform-name">Conclusión General</h3>
+      </div>
+      <div class="platform-insights">
+        <ul style="text-align: justify;">
+          <li><strong>Total de publicaciones</strong>: 308 (<span style="color: green;">▲ +3,7%</span>).</li>
+          <li><strong>Alcance mensual combinado</strong>: 5.100.000 personas (<span style="color: green;">▲ +42,3%</span>).</li>
+          <li>Presencia activa y consolidada en todas las plataformas principales.</li>
+          <li>El verdadero reto no es solo ser visibles, sino transformar esa visibilidad en comunidad, en conversación significativa y en participación real.</li>
+        </ul>
       </div>
     </div>
   </div>
+</div>
   <!-- Sección Dinámica: Análisis Comparativo de Crecimiento entre Gobernadores -->
   <div class="section">
     <div class="section-header">
@@ -1965,5 +2045,38 @@
       updateDashboard("instagram");
     });
   </script>
+ <script>
+        function checkPassword() {
+            const correctPassword = "AceroNqn"; // Reemplaza con la contraseña que desees
+            const enteredPassword = document.getElementById("passwordInput").value;
+            
+            if (enteredPassword === correctPassword) {
+                // Contraseña correcta, mostrar contenido y ocultar login
+                document.getElementById("loginScreen").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+                
+                // Guardar en sessionStorage para mantener la sesión mientras el navegador está abierto
+                sessionStorage.setItem("authenticated", "true");
+            } else {
+                // Contraseña incorrecta, mostrar mensaje de error
+                document.getElementById("errorMessage").style.display = "block";
+            }
+        }
+        
+        // Al cargar la página, verificar si ya está autenticado
+        window.onload = function() {
+            if (sessionStorage.getItem("authenticated") === "true") {
+                document.getElementById("loginScreen").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+            }
+        };
+        
+        // Permitir envío al presionar Enter
+        document.getElementById("passwordInput").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+    </script>
   </body>
 </html>
